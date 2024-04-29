@@ -18,7 +18,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@app/*":["./app/*"],
+      "@hooks/*":["./app/hooks/*"],
+      "@components/*":["./app/components/*"],
+      "@material-tailwind/*":["./node_modules/@material-tailwind/"]
+
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
