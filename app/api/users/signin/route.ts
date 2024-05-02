@@ -12,6 +12,6 @@ export const POST = async (req: Request) => {
     const passwordMatch = await user.comparePassword(password)
     if (!passwordMatch) return NextResponse.json({ error: 'Email/Password mismatch!' })
 
-    return NextResponse.json({ user: user._id.toString(), name: user.name, avatar: user.avatar?.url, role: user.role })
+    return NextResponse.json({ user: { id: user._id.toString(), name: user.name, email: user.email, avatar: user.avatar?.url, role: user.role, verified: user.verified }, });
 
 }

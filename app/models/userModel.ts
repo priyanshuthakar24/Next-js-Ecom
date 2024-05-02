@@ -7,7 +7,7 @@ interface UserDocument extends Document {
     password: string;
     role: "admin" | "user";
     avatar?: { url: string; id: string };
-    varified: boolean;
+    verified: boolean;
 }
 
 interface Method {
@@ -21,7 +21,7 @@ const userSchema = new Schema<UserDocument, {}, Method>({
     password: { type: String, required: true },
     role: { type: String, enum: ['admin', 'user'], default: 'user' },
     avatar: { type: Object, url: String, id: String },
-    varified: { type: Boolean, default: false },
+    verified: { type: Boolean, default: false },
 }, { timestamps: true });
 
 

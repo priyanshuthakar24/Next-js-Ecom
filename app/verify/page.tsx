@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { notFound, useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { toast } from 'react-toastify';
@@ -19,11 +19,11 @@ export default function Verify(props: Props) {
             }
             if (res.ok) {
                 toast.success(message)
-                router.replace('/')
             }
             if (!res.ok && error) {
                 toast.error(error);
             }
+            router.replace('/')
         });
     }, []);
 
