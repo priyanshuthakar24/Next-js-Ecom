@@ -5,10 +5,9 @@ import Navbar from '@components/navbar'
 interface Props {
     children: ReactNode
 }
-export default async function GuestLayout({ children }: Props) {
-    const session = await auth()
-    if (session) return redirect('/');
+export default async function HomeLayout({ children }: Props) {
+
     return (
-        <div><Navbar />{children}</div>
+        <div className='max-w-screen-xl mx-auto p-4 xl:p-0'><Navbar />{children}</div>
     )
 }

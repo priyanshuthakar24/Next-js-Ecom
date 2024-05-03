@@ -31,15 +31,16 @@ const authConfig: NextAuthConfig = {
         },
         async session(params) {
             const user = params.token as typeof params.token & SessionUserProfile;
-            
+
             if (user) {
                 params.session.user = {
-                    ...params.session.user, 
+                    ...params.session.user,
                     id: user.id,
                     name: user.name,
                     email: user.email,
                     avatar: user.avatar,
                     verified: user.verified,
+                    role: user.role,
                 }
             }
             return params.session;
