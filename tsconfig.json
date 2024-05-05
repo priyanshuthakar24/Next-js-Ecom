@@ -26,6 +26,7 @@
       "@models/*":["./app/models/*"],
       "@material-tailwind/*":["./node_modules/@material-tailwind/"],
       "@ui/*":["./app/ui/*"],
+      "@utils/*":["./app/utils/*"],
 
     }
   },

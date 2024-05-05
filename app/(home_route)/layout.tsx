@@ -1,5 +1,3 @@
-import { auth } from '@/auth'
-import { redirect } from 'next/navigation'
 import React, { ReactNode } from 'react'
 import Navbar from '@components/navbar'
 interface Props {

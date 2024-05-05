@@ -67,3 +67,41 @@ export interface ProductResponse {
     };
     category: string;
 }
+
+export interface ProductToUpdate {
+    title: string;
+    description: string;
+    bulletPoints: string[];
+    category: string;
+    quantity: number;
+    price: {
+        base: number;
+        discounted: number;
+    };
+    thumbnail?: { url: string, id: string };
+    images?: { url: string; id: string }[];
+}
+
+export interface NewCartRequest {
+    productId: string;
+    quantity: number
+}
+
+export interface NewFeaturedProduct {
+    banner: { url: string; id: string };
+    link: string;
+    linkTitle: string;
+    title: string;
+}
+
+export interface FeaturedProductForUpdate {
+    banner?: { url: string; id: string };
+    link: string;
+    linkTitle: string;
+    title: string;
+}
+export interface UserProfileToUpdate {
+    avatar?: { url: string; id: string };
+    name: string;
+    id: string;
+  }
