@@ -24,7 +24,7 @@ export default function EmailVerificationBanner({ id, verified }: Props) {
     return (
         <div className='p-2 text-center bg-blue-50'>
             <span>
-                It looks like you haven't verified your email.
+                {`It looks like you haven't verified your email.`}
             </span>
             <button disabled={submitting} onClick={applyForReverification} className='ml-2 font-semibold underline'>{submitting ? "Generating Link..." : " Get verification link."}</button>
         </div>

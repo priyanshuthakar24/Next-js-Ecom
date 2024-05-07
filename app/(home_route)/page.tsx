@@ -1,10 +1,12 @@
-import FeaturedProductsSlider from "../components/FeaturedProductSlider";
-import GridView from "../components/GridView";
-import HorizontalMenu from "../components/HorizontalMenu";
-import ProductCard from "../components/ProductCard";
-import startDb from "../lib/db";
-import FeaturedProductModel from "../models/featuredProduct";
-import ProductModel from "../models/productModel";
+import React from "react";
+import startDb from "@lib/db";
+import ProductModel from "@models/productModel";
+import GridView from "@components/GridView";
+import ProductCard from "@components/ProductCard";
+import FeaturedProductsSlider from "@/app/components/FeaturedProductsSlider";
+import FeaturedProductModel from "@models/featuredProduct";
+import CategoryMenu from "@components/CategoryMenu";
+
 interface LatestProduct {
   id: string;
   title: string;
@@ -57,13 +59,16 @@ export default async function Home() {
   const latestProducts = await fetchLatestProducts();
   const parsedProducts = JSON.parse(latestProducts) as LatestProduct[];
   const featuredProducts = await fetchFeaturedProducts();
-  return <div className="py-4 space-y-4">
-    <FeaturedProductsSlider products={featuredProducts} />
-    <HorizontalMenu />
-    <GridView>
-      {parsedProducts.map((product) => {
-        return <ProductCard key={product.id} product={product} />;
-      })}
-    </GridView>
-  </div>
+
+  return (
+    <div className="py-4 space-y-4">
+      <FeaturedProductsSlider products={featuredProducts} />
+      <CategoryMenu />
+      <GridView>
+        {parsedProducts.map((product) => {
+          return <ProductCard key={product.id} product={product} />;
+        })}
+      </GridView>
+    </div>
+  );
 }

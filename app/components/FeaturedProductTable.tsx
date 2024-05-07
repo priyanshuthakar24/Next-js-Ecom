@@ -1,10 +1,10 @@
 "use client";
 import { Button, CardBody, Typography } from "@material-tailwind/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useTransition } from "react";
 import truncate from "truncate";
 import { deleteFeaturedProduct } from "../(admin)/products/featured/action";
+import { useRouter } from "next/navigation";
 
 const TABLE_HEAD = ["Detail", "Product", ""];
 

@@ -2,6 +2,7 @@ import React from "react";
 import BuyingOptions from "@components/BuyingOptions";
 import { formatPrice } from "../utils/helper";
 import ProductImageGallery from "@components/ProductImageGallery";
+import Rating from "./Rating";
 
 interface Props {
     title: string;
@@ -10,9 +11,10 @@ interface Props {
     points?: string[];
     price: { base: number; discounted: number };
     sale: number;
+    rating: number;
+    outOfStock: boolean;
+    isWishlist?: boolean;
 }
-
-
 
 export default function ProductView({
     description,
@@ -21,10 +23,13 @@ export default function ProductView({
     points,
     price,
     sale,
+    rating,
+    outOfStock,
+    isWishlist,
 }: Props) {
     return (
         <div className="flex lg:flex-row flex-col md:gap-4 gap-2">
-            <div className="flex-1 lg:self-start self-center">
+            <div className="flex-1 lg:self-start self-center relative">
                 {/* Product Image Slider */}
                 <ProductImageGallery images={images} />
             </div>
@@ -39,6 +44,8 @@ export default function ProductView({
                     })}
                 </div>
 
+                {rating ? <Rating value={parseFloat(rating.toFixed(1))} /> : null}
+
                 <div className="flex items-center space-x-2 mb-2">
                     <p className="line-through text-xl">{formatPrice(price.base)}</p>
                     <p className="font-semibold text-xl">
@@ -50,7 +57,11 @@ export default function ProductView({
                 </div>
 
                 <div className="flex py-4">
-                    <BuyingOptions />
+                    {outOfStock ? (
+                        <div className="uppercase text-gray-700">Out of stock</div>
+                    ) : (
+                        <BuyingOptions wishlist={isWishlist} />
+                    )}
                 </div>
             </div>
         </div>

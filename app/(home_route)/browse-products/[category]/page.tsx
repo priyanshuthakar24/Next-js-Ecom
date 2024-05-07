@@ -3,7 +3,7 @@ import startDb from "@lib/db";
 import ProductModel from "@models/productModel";
 import GridView from "@components/GridView";
 import ProductCard from "@components/ProductCard";
-import HorizontalMenu from "@/app/components/HorizontalMenu";
+import CategoryMenu from "@/app/components/CategoryMenu";
 interface LatestProduct {
     id: string;
     title: string;
@@ -15,6 +15,7 @@ interface LatestProduct {
         discounted: number;
     };
     sale: number;
+    outOfStock: boolean;
 }
 
 const fetchProductsByCategory = async (category: string) => {
@@ -50,7 +51,7 @@ export default async function ProductByCategory({ params }: Props) {
 
     return (
         <div className="py-4 space-y-4">
-            <HorizontalMenu />
+            <CategoryMenu />
             {parsedProducts.length ? (
                 <GridView>
                     {parsedProducts.map((product) => {

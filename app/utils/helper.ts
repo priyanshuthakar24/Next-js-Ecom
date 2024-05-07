@@ -21,13 +21,6 @@ export const uploadImage = async (file: File) => {
     return { url: data.secure_url, id: data.public_id };
 };
 
-export const extractPublicId = (url: string) => {
-    const splittedData = url.split("/");
-    const lastItem = splittedData[splittedData.length - 1];
-
-    return lastItem.split(".")[0];
-};
-
 export const formatPrice = (amount: number) => {
     const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -35,4 +28,11 @@ export const formatPrice = (amount: number) => {
     });
 
     return formatter.format(amount);
+};
+
+export const extractPublicId = (url: string) => {
+    const splittedData = url.split("/");
+    const lastItem = splittedData[splittedData.length - 1];
+
+    return lastItem.split(".")[0];
 };

@@ -1,5 +1,5 @@
 import { signOut } from "next-auth/react";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface Props {
     children: ReactNode;

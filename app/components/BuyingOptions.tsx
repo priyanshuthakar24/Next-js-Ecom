@@ -4,10 +4,15 @@ import React, { useState, useTransition } from "react";
 import { Button } from "@material-tailwind/react";
 import CartCountUpdater from "@components/CartCountUpdater";
 import { useParams, useRouter } from "next/navigation";
-import useAuth from "../hooks/useAuth";
+import useAuth from "@hooks/useAuth";
 import { toast } from "react-toastify";
+import Wishlist from "@ui/Wishlist";
 
-export default function BuyingOptions() {
+interface Props {
+  wishlist?: boolean;
+}
+
+export default function BuyingOptions({ wishlist }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [isPending, startTransition] = useTransition();
   const { product } = useParams();
@@ -40,6 +45,22 @@ export default function BuyingOptions() {
     router.refresh();
   };
 
+  const updateWishlist = async () => {
+    if (!productId) return;
+
+    if (!loggedIn) return router.push("/auth/signin");
+
+    const res = await fetch("/api/product/wishlist", {
+      method: "POST",
+      body: JSON.stringify({ productId }),
+    });
+
+    const { error } = await res.json();
+    if (!res.ok && error) toast.error(error);
+
+    router.refresh();
+  };
+
   return (
     <div className="flex items-center space-x-2">
       <CartCountUpdater
@@ -48,11 +69,27 @@ export default function BuyingOptions() {
         value={quantity}
       />
 
-      <Button variant="text" onClick={() => {
-        startTransition(async () => await addToCart());
-      }} disabled={isPending} >Add to Cart</Button>
-      <Button color="amber" disabled={isPending} className="rounded-full">
+      <Button
+        onClick={() => {
+          startTransition(async () => await addToCart());
+        }}
+        variant="text"
+        disabled={isPending}
+      >
+        Add to Cart
+      </Button>
+      <Button disabled={isPending} color="amber" className="rounded-full">
         Buy Now
+      </Button>
+
+      <Button
+        onClick={() => {
+          startTransition(async () => await updateWishlist());
+        }}
+        variant="text"
+        disabled={isPending}
+      >
+        <Wishlist isActive={wishlist} />
       </Button>
     </div>
   );

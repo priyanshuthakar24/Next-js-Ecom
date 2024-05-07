@@ -7,6 +7,7 @@ declare module "next-auth" {
     }
 }
 
+
 const authConfig: NextAuthConfig = {
     providers: [CredentialsProvider({
         type: 'credentials',
@@ -23,13 +24,13 @@ const authConfig: NextAuthConfig = {
         },
     })],
     callbacks: {
-        async jwt(params) {
+        async jwt(params: any) {
             if (params.user) {
                 params.token = { ...params.token, ...params.user };
             }
             return params.token;
         },
-        async session(params) {
+        async session(params: any) {
             const user = params.token as typeof params.token & SessionUserProfile;
 
             if (user) {

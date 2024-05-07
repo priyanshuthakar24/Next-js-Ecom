@@ -46,6 +46,7 @@ const productSchema = new Schema<ProductDocument>(
         },
         category: { type: String, enum: [...categories], required: true },
         quantity: { type: Number, required: true },
+        rating: Number,
     },
     { timestamps: true }
 );

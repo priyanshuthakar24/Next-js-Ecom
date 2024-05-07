@@ -2,10 +2,10 @@
 import React, { useState, useTransition } from "react";
 import { Button, Input } from "@material-tailwind/react";
 import ProfileAvatarInput from "@components/ProfileAvatarInput";
-import { UserProfileToUpdate } from "../types";
-import { uploadImage } from "../utils/helper";
 import { toast } from "react-toastify";
+import { uploadImage } from "../utils/helper";
 import { updateUserProfile } from "../(private_route)/profile/action";
+import { UserProfileToUpdate } from "../types";
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -23,6 +23,7 @@ export default function ProfileForm({ id, name, avatar, email }: Props) {
 
     const avatarSource = avatarFile ? URL.createObjectURL(avatarFile) : avatar;
     const showSubmitButton = avatarSource !== avatar || userName !== name;
+
     const updateUserInfo = async () => {
         if (userName.trim().length < 3) return toast.error("Name is invalid!");
 
@@ -36,12 +37,16 @@ export default function ProfileForm({ id, name, avatar, email }: Props) {
         await updateUserProfile(info);
         router.refresh();
     };
+
     return (
-        <form className="space-y-6" action={() => {
-            startTransition(async () => {
-                await updateUserInfo();
-            });
-        }}>
+        <form
+            action={() => {
+                startTransition(async () => {
+                    await updateUserInfo();
+                });
+            }}
+            className="space-y-6"
+        >
             <ProfileAvatarInput
                 onChange={setAvatarFile}
                 nameInitial={name[0]}

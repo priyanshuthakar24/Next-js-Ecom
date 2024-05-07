@@ -21,12 +21,12 @@ const CartCountUpdater = ({
             style={{ opacity: disabled ? "0.5" : "1" }}
             className="flex items-center space-x-2"
         >
-            <IconButton disabled={disabled} onClick={onDecrement} variant="text">
+            <IconButton disabled={disabled} onClick={onDecrement} variant="text" color="blue">
                 <MinusSmallIcon className="w-4 h-4" />
             </IconButton>
 
             <span className="text-lg font-medium">{value}</span>
-            <IconButton disabled={disabled} onClick={onIncrement} variant="text">
+            <IconButton disabled={disabled} onClick={onIncrement} variant="text" color="blue">
                 <PlusSmallIcon className="w-4 h-4" />
             </IconButton>
         </div>
