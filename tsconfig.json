@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,18 +22,43 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@app/*":["./app/*"],
-      "@hooks/*":["./app/hooks/*"],
-      "@components/*":["./app/components/*"],
-      "@lib/*":["./app/lib/*"],
-      "@models/*":["./app/models/*"],
-      "@material-tailwind/*":["./node_modules/@material-tailwind/"],
-      "@ui/*":["./app/ui/*"],
-      "@utils/*":["./app/utils/*"],
-
-    }
+      "@/*": [
+        "./*"
+      ],
+      "@app/*": [
+        "./app/*"
+      ],
+      "@hooks/*": [
+        "./app/hooks/*"
+      ],
+      "@components/*": [
+        "./app/components/*"
+      ],
+      "@lib/*": [
+        "./app/lib/*"
+      ],
+      "@models/*": [
+        "./app/models/*"
+      ],
+      "@material-tailwind/*": [
+        "./node_modules/@material-tailwind/"
+      ],
+      "@ui/*": [
+        "./app/ui/*"
+      ],
+      "@utils/*": [
+        "./app/utils/*"
+      ]
+    },
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
