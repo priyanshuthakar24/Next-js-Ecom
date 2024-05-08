@@ -11,7 +11,7 @@ export default function SearchForm({ submitTo }: Props) {
     const [query, setQuery] = useState("");
     const router = useRouter();
     const params = useSearchParams();
-    const searchQuery = params.get("query") || "";
+    // const searchQuery = params.get("query") || "";
 
     return (
         <form
@@ -29,7 +29,7 @@ export default function SearchForm({ submitTo }: Props) {
                         <MagnifyingGlassIcon className="h-5 w-5" />
                     </button>
                 }
-                value={query || searchQuery}
+                value={query}
                 onChange={({ target }) => setQuery(target.value)}
             />
         </form>

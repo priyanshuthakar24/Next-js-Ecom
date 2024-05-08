@@ -1,9 +1,9 @@
 import OrderListPublic, { Orders } from "@/app/components/OrderListPublic";
-import startDb from '@/app/lib/db';
-import OrderModel from '@/app/models/orderModel';
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
-import React from 'react'
+import startDb from "@/app/lib/db";
+import OrderModel from "@/app/models/orderModel";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import React from "react";
 
 const fetchOrders = async () => {
     const session = await auth();
@@ -35,7 +35,10 @@ export default async function Order() {
     if (!result) {
         return redirect("/404");
     }
+
     return (
-        <div> <OrderListPublic orders={JSON.parse(result)} /></div>
-    )
+        <div>
+            <OrderListPublic orders={JSON.parse(result)} />
+        </div>
+    );
 }

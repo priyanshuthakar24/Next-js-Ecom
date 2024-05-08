@@ -1,16 +1,21 @@
-import ProductTable, { Product } from '@/app/components/ProductTable'
-import startDb from '@/app/lib/db';
-import ProductModel from '@/app/models/productModel';
-import { redirect } from 'next/navigation';
-import React from 'react'
+import ProductTable, { Product } from "@/app/components/ProductTable";
+import startDb from "@/app/lib/db";
+import ProductModel from "@/app/models/productModel";
+import { redirect } from "next/navigation";
+import React from "react";
 
 const fetchProducts = async (
     pageNo: number,
     perPage: number
 ): Promise<Product[]> => {
     const skipCount = (pageNo - 1) * perPage;
+
     await startDb();
-    const products = await ProductModel.find().sort("-createdAt").skip(skipCount).limit(perPage)
+    const products = await ProductModel.find()
+        .sort("-createdAt")
+        .skip(skipCount)
+        .limit(perPage);
+
     return products.map((product) => {
         return {
             id: product._id.toString(),
@@ -24,13 +29,16 @@ const fetchProducts = async (
             },
             category: product.category,
             quantity: product.quantity,
-        }
-    })
-}
-const PRODUCTS_PER_PAGE = 10
+        };
+    });
+};
+
+const PRODUCTS_PER_PAGE = 10;
+
 interface Props {
-    searchParams: { page: string }
+    searchParams: { page: string };
 }
+
 export default async function Products({ searchParams }: Props) {
     const { page = "1" } = searchParams;
 

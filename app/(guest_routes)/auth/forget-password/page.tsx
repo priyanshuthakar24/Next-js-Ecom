@@ -26,19 +26,22 @@ export default function ForgetPassword() {
         initialValues: { email: "" },
         validationSchema,
         onSubmit: async (values, actions) => {
-            actions.setSubmitting(true)
-            const res = await fetch('/api/users/forget-password', {
+            actions.setSubmitting(true);
+            const res = await fetch("/api/users/forget-password", {
                 method: "POST",
                 body: JSON.stringify(values),
             });
-            const { message, error } = await res.json()
+
+            const { message, error } = await res.json();
+
             if (res.ok) {
-                toast.success(message)
+                toast.success(message);
             }
+
             if (!res.ok && error) {
                 toast.error(error);
             }
-            actions.setSubmitting(false)
+            actions.setSubmitting(false);
         },
     });
 

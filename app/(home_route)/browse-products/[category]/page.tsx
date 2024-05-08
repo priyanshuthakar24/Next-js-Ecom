@@ -4,6 +4,7 @@ import ProductModel from "@models/productModel";
 import GridView from "@components/GridView";
 import ProductCard from "@components/ProductCard";
 import CategoryMenu from "@/app/components/CategoryMenu";
+
 interface LatestProduct {
     id: string;
     title: string;
@@ -15,7 +16,7 @@ interface LatestProduct {
         discounted: number;
     };
     sale: number;
-    outOfStock: boolean;
+    outOfStock:boolean;
 }
 
 const fetchProductsByCategory = async (category: string) => {

@@ -3,7 +3,7 @@ import startDb from "@lib/db";
 import ProductModel from "@models/productModel";
 import GridView from "@components/GridView";
 import ProductCard from "@components/ProductCard";
-import FeaturedProductsSlider from "@/app/components/FeaturedProductsSlider";
+import FeaturedProductsSlider from "@components/FeaturedProductsSlider";
 import FeaturedProductModel from "@models/featuredProduct";
 import CategoryMenu from "@components/CategoryMenu";
 
@@ -18,6 +18,7 @@ interface LatestProduct {
     discounted: number;
   };
   sale: number;
+  outOfStock: boolean
 }
 
 const fetchLatestProducts = async () => {
@@ -34,6 +35,7 @@ const fetchLatestProducts = async () => {
       price: product.price,
       sale: product.sale,
       rating: product.rating,
+      outOfStock: product.quantity <= 0
     };
   });
 

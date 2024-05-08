@@ -30,6 +30,8 @@ export interface Product {
     base: number;
     discounted: number;
   };
+  outOfStock: boolean
+
 }
 
 interface Props {
@@ -108,18 +110,21 @@ export default function ProductCard({ product }: Props) {
         </CardBody>
       </Link>
       <CardFooter className="pt-0 space-y-4">
-        <Button
-          ripple={false}
-          fullWidth={true}
-          className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
-          onClick={() => {
-            startTransition(async () => await addToCart());
-          }}
-          disabled={isPending}
-        >
-          Add to Cart
-        </Button>
-        <Button
+        {product.outOfStock ? <div></div> :
+          <Button
+            ripple={false}
+            fullWidth={true}
+            className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
+            onClick={() => {
+              startTransition(async () => await addToCart());
+            }}
+            disabled={isPending}
+          >
+            Add to Cart
+          </Button>}
+        {product.outOfStock ? (
+          <div className="uppercase text-red-700 text-center text-2xl ">Out of stock</div>
+        ) : (<Button
           disabled={isPending}
           ripple={false}
           fullWidth={true}
@@ -129,7 +134,7 @@ export default function ProductCard({ product }: Props) {
           className="bg-blue-400 text-white shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
         >
           Buy Now
-        </Button>
+        </Button>)}
       </CardFooter>
     </Card>
   );
