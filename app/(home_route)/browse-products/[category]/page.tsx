@@ -16,7 +16,7 @@ interface LatestProduct {
         discounted: number;
     };
     sale: number;
-    outOfStock:boolean;
+    outOfStock: boolean;
 }
 
 const fetchProductsByCategory = async (category: string) => {

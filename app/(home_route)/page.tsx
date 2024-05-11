@@ -18,7 +18,7 @@ interface LatestProduct {
     discounted: number;
   };
   sale: number;
-  outOfStock: boolean
+  outOfStock: boolean;
 }
 
 const fetchLatestProducts = async () => {
