@@ -24,8 +24,8 @@ export default function WishlistProductCard({ product }: Props) {
     const { id, price, thumbnail, title } = product;
 
     const updateWishlist = async () => {
+  
         if (!id) return;
-
         const res = await fetch("/api/product/wishlist", {
             method: "POST",
             body: JSON.stringify({ productId: id }),

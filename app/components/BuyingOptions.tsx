@@ -16,7 +16,7 @@ export default function BuyingOptions({ wishlist }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [isPending, startTransition] = useTransition();
   const { product } = useParams();
-  const productId = product[1];
+  const productId = product.split('/')[1];
   const { loggedIn } = useAuth();
   const router = useRouter();
 
